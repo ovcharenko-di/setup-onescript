@@ -103,16 +103,16 @@ async function run() {
 function installLinux() {
     var value = [];
     value.push('#!/bin/bash');
-    value.push('sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF');
-    value.push('echo "deb http://download.mono-project.com/repo/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/mono-official.list');
-    value.push('sudo apt-get update');
-    value.push('sudo apt-get install mono-complete mono-devel');
-    value.push('sudo mv ovm.exe /usr/local/bin/');
+    value.push('apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF');
+    value.push('echo "deb http://download.mono-project.com/repo/ubuntu trusty main" | tee /etc/apt/sources.list.d/mono-official.list');
+    value.push('apt-get update');
+    value.push('apt-get install mono-complete mono-devel');
+    value.push('mv ovm.exe /usr/local/bin/');
 
     let cmd = 'mono /usr/local/bin/ovm.exe "$@"';
-    value.push("echo '" + cmd + "' | sudo tee /usr/local/bin/ovm");
+    value.push("echo '" + cmd + "' | tee /usr/local/bin/ovm");
 
-    value.push('sudo chmod +x /usr/local/bin/ovm');
+    value.push('chmod +x /usr/local/bin/ovm');
     return value.join('\n');
 }
 
@@ -122,7 +122,7 @@ function installMacOs() {
     value.push('mv ovm.exe /usr/local/bin/');
     let cmd = 'mono /usr/local/bin/ovm.exe "$@"';
     value.push("echo '" + cmd + "' | tee /usr/local/bin/ovm");
-    value.push('sudo chmod +x /usr/local/bin/ovm');
+    value.push('chmod +x /usr/local/bin/ovm');
     return value.join('\n');
 }
 
